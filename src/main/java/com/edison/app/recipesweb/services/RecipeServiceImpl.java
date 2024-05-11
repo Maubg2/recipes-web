@@ -1,5 +1,6 @@
 package com.edison.app.recipesweb.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,8 @@ public class RecipeServiceImpl implements RecipeService{
         createdRecipe.setImage(recipe.getImage());
         createdRecipe.setDescription(recipe.getDescription());
         createdRecipe.setUser(user);
-        createdRecipe.setCreatedAt(recipe.getCreatedAt());
+        createdRecipe.setCreatedAt(LocalDateTime.now());
+        createdRecipe.setVegetarian(recipe.isVegetarian());
         return recipeRepository.save(createdRecipe);
     }
 
@@ -70,7 +72,7 @@ public class RecipeServiceImpl implements RecipeService{
         }else{
             recipe.getLikes().add(user.getId());
         }
-        return null;
+        return recipeRepository.save(recipe);
     }
 
 }
