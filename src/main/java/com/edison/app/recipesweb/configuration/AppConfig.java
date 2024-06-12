@@ -15,6 +15,8 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class AppConfig {
@@ -53,7 +55,9 @@ public class AppConfig {
         };
     }
 
-
-
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
 }
