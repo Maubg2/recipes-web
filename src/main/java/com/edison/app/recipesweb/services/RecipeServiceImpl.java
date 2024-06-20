@@ -11,6 +11,8 @@ import com.edison.app.recipesweb.entities.Recipe;
 import com.edison.app.recipesweb.entities.User;
 import com.edison.app.recipesweb.repositories.RecipeRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class RecipeServiceImpl implements RecipeService{
 
@@ -39,6 +41,7 @@ public class RecipeServiceImpl implements RecipeService{
     }
 
     @Override
+    @Transactional
     public void deleteRecipe(Long id) throws Exception {
         findRecipeById(id);
         recipeRepository.deleteById(id);
